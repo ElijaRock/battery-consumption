@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <unistd.h>
 
 #define CLEAR_LINE "\33[2K\r"
 
@@ -15,6 +16,8 @@ int main(void)
 
     for (;;)
     {
+        sleep(1);
+
         prevDraw = draw;
         draw = getPowerDraw();
 
