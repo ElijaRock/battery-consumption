@@ -6,6 +6,7 @@
 #define CLEAR_LINE "\33[2K\r"
 
 double getPowerDraw();
+double timeRemaining(void);
 int dEqual(double a, double b, double epsilon);
 bool isLinux();
 
@@ -19,8 +20,9 @@ int main(void)
     }
 
     double draw = getPowerDraw();
+    double hours = timeRemaining();
     double prevDraw = draw;
-    printf("%.1f W", draw);
+    printf("%.1f W%5.1f hr", draw, hours);
     fflush(stdout); // actual printing occurs here
 
     for (;;)
@@ -33,7 +35,10 @@ int main(void)
         if (!dEqual(prevDraw, draw, 1.0E-4))
         {
             printf(CLEAR_LINE);
-            printf("%.1f W", draw);
+
+            hours = timeRemaining();
+
+            printf("%.1f W%5.1f hr", draw, hours);
             fflush(stdout);
         }
     }
